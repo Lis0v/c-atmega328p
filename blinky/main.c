@@ -1,22 +1,17 @@
 #include <avr/io.h>
-
-#define F_CPU 16000000
-#define BLINK_DELAY_MS 1000
-
 #include <util/delay.h>
 
-int main (void)
-{
-  // Arduino digital pin 13 (pin 5 of PORTB) for output
-  DDRB |= 0B100000; // PORTB5
+#define LED         PB5
+#define LED_PORT    PORTB
+#define LED_DDR     DDRB
 
-  while(1) {
-    // turn LED on
-    PORTB |= 0B100000; // PORTB5
-    _delay_ms(BLINK_DELAY_MS);
-
-    // turn LED off
-    PORTB &= ~ 0B100000; // PORTB5
-    _delay_ms(BLINK_DELAY_MS);
-  }
+int main(void){
+    setBit(LED_DDR,LED);
+    LED_DDR |= (1<<LED);
+    
+    while(1)
+    {
+        LED_PORT ^=(1<<LED);
+        _delay_ms(10000);
+    }
 }
