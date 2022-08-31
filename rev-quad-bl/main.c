@@ -17,6 +17,10 @@ int main(void){
             PORTB ^= (1<<i);
             _delay_ms(1000);
         }
+        for(uint8_t i=2;i<6;i++){
+            PORTB ^= (1<<i);
+            _delay_ms(100);
+        }
     }
 }
 
