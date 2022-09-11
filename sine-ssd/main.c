@@ -16,15 +16,32 @@ int main(void)
 {
     uint8_t addr = SSD1306_ADDRESS;
     SSD1306_ClearScreen();
-    double y = 0;
+    SSD1306_Init (addr);
+    double y;
+    double x = 0;
 
-        for(double x=0;x<32;x++){
-            SSD1306_Init (addr);
+        while(1){
 
-            y = sin(x); //funkcja
-
-            SSD1306_DrawPixel(round(x), round(y+8));
+            y=8*sin(x/2);
+            
+            x = x + 0.2;
+            SSD1306_DrawPixel(x, y+32);
             SSD1306_UpdateScreen (addr);
+
+            if(x>127){
+                x = 0;
+            SSD1306_ClearScreen();
+            }
         }
+
     return 0;
 }
+
+/* UKLAD
+ * ard  -   ssd
+ * ------------
+ * GND  -   GND
+ * 5V   -   VDD
+ * A4   -   SCK
+ * A5   -   SDA
+*/
