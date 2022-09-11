@@ -22,9 +22,9 @@ int main(void)
 
         while(1){
 
-            y=8*sin(x/2);
+            y=16*sin(x/2);
             
-            x = x + 0.2;
+            x = x + 0.1;
             SSD1306_DrawPixel(x, y+32);
             SSD1306_UpdateScreen (addr);
 
