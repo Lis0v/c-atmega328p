@@ -1,4 +1,7 @@
+#define F_CPU 16000000UL
+
 #include <stdio.h>
+#include <math.h>
 #include <util/delay.h>
 
 #include </usr/include/ssd1306/ssd1306.h>
@@ -12,16 +15,16 @@
 int main(void)
 {
     uint8_t addr = SSD1306_ADDRESS;
-    SSD1306_Init (addr);
-    SSD1306_ClearScreen ();
+    SSD1306_ClearScreen();
+    double y = 0;
 
-    int x;
+        for(double x=0;x<32;x++){
+            SSD1306_Init (addr);
 
-        for(int y=0;y<64;y++){
-            y = x + 1;
-            SSD1306_DrawPixel(x, y);
+            y = sin(x); //funkcja
+
+            SSD1306_DrawPixel(round(x), round(y+8));
             SSD1306_UpdateScreen (addr);
-            _delay_ms(1000);
         }
     return 0;
 }
